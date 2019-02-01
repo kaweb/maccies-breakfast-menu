@@ -4,7 +4,7 @@ namespace Kaweb\MacciesMenu\Parsers;
 
 class MenuParser
 {
-    public function parse(): array
+    public function parse(string $html): array
     {
 
     }
