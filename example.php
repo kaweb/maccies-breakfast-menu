@@ -1,3 +1,7 @@
 <?php
 
-echo file_get_contents('https://burgerlad.com/mcdonalds-prices-uk-2018/');
+require('./vendor/autoload.php');
+
+$client = \Kaweb\MacciesMenu\Client::create();
+
+$client->getMenu();

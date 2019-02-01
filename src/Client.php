@@ -9,6 +9,11 @@ class Client
 {
     const MENU_URL = "https://burgerlad.com/mcdonalds-prices-uk-2018/";
 
+    public static function create()
+    {
+        return new self(new RequestHelper(), new MenuParser());
+    }
+
     /**
      * @var RequestHelper
      */
