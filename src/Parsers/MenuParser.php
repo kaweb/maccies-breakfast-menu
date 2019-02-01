@@ -23,14 +23,28 @@ class MenuParser
 
         $table = $xpath->query('//table[@id="tablepress-2"]//tbody//tr');
 
-        $i = 0;
-        foreach ($table as $item) {
-            print_r($xpath->query('//td', $item));
+        $deadRows = [0];
 
-            if ($i === 2) {
-                die;
+        echo $table->length;
+
+        for ($i = 0; $i < $table->length; $i++) {
+            if (in_array($i, $deadRows)) {
+                continue;
             }
-            $i++;
+
+            $tr = $table->item($i);
+            $tds = $tr->childNodes;
+
+            for ($j = 0; $j < $tr->childNodes; $j++) {
+                $tr->item(0);
+            }
+
+            print_r([
+                'tr' => $tr,
+                'tds' => $tds
+            ]);
+
+            die;
         }
 
         return [];
