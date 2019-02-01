@@ -1,0 +1,17 @@
+{
+    "name": "kaweb/maccies-menu",
+    "description": "A PHP library to get the mcdonalds menu",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Alex Blackham",
+            "email": "alex.blackham@kaweb.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kaweb\\MacciesMenu\\": "src/"
+        }
+    },
+    "require": {}
+}
