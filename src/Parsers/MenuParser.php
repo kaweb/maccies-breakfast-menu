@@ -15,7 +15,7 @@ class MenuParser
      * Parse the HTML string.
      *
      * @param string $html
-     * @return array
+     * @return MenuItemModel[]
      */
     public function parse(string $html): array
     {
