@@ -45,6 +45,18 @@ class Client
     {
         $html = $this->requestHelper->get(self::MENU_URL);
 
-        return $this->menuParser->parse($html);
+        $menuItems = $this->menuParser->parse($html);
+
+        $menuItemsArray = [];
+        foreach ($menuItems as $menuItem) {
+            $menuItemsArray[] = [
+                'name' => $menuItem->getName(),
+                'calories' => $menuItem->getCalories(),
+                'individual_price' => $menuItem->getIndividualPrice(),
+                'meal_price' => $menuItem->getMealPrice(),
+            ];
+        }
+
+        return $menuItemsArray;
     }
 }
