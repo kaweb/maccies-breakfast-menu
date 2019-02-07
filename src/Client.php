@@ -7,7 +7,7 @@ use Kaweb\MacciesMenu\Parsers\MenuParser;
 
 class Client
 {
-    const MENU_URL = "https://burgerlad.com/mcdonalds-prices-uk-2018/";
+    const MENU_URL = "https://burgerlad.com/mcdonalds-breakfast-menu/";
 
     public static function create()
     {

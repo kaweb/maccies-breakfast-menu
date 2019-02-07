@@ -2,6 +2,8 @@
 
 namespace Kaweb\MacciesMenu\Parsers;
 
+use Kaweb\MacciesMenu\Models\MenuItemModel;
+
 class MenuParser
 {
     /**
@@ -21,33 +23,37 @@ class MenuParser
 
         $xpath = $this->getXPath();
 
-        $table = $xpath->query('//table[@id="tablepress-2"]//tbody//tr');
+        $tableData = $xpath->query('//table[@id="tablepress-4"]//tbody//tr//td');
 
-        $deadRows = [0];
+        $menuItems = [];
+        for ($i = 4; $i < $tableData->length; $i += 4) {
+            $menuItem = new MenuItemModel();
 
-        echo $table->length;
+            $name = $tableData->item($i);
+            $calories = $tableData->item($i + 1);
+            $individualPrice = $tableData->item($i + 2);
+            $mealPrice = $tableData->item($i + 3);
 
-        for ($i = 0; $i < $table->length; $i++) {
-            if (in_array($i, $deadRows)) {
-                continue;
+            if (!empty($name->nodeValue)) {
+                $menuItem->setName($name->nodeValue);
             }
 
-            $tr = $table->item($i);
-            $tds = $tr->childNodes;
-
-            for ($j = 0; $j < $tr->childNodes; $j++) {
-                $tr->item(0);
+            if (!empty($calories->nodeValue)) {
+                $menuItem->setCalories((int)$calories->nodeValue);
             }
 
-            print_r([
-                'tr' => $tr,
-                'tds' => $tds
-            ]);
+            if (!empty($individualPrice->nodeValue)) {
+                $menuItem->setIndividualPrice($individualPrice->nodeValue);
+            }
 
-            die;
+            if (!empty($mealPrice->nodeValue)) {
+                $menuItem->setMealPrice($mealPrice->nodeValue);
+            }
+
+            $menuItems[] = $menuItem;
         }
 
-        return [];
+        return $menuItems;
     }
 
     protected function getXPath(): \DOMXPath

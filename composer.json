@@ -13,5 +13,8 @@
             "Kaweb\\MacciesMenu\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+      "ext-json": "*",
+      "ext-dom": "*"
+    }
 }
